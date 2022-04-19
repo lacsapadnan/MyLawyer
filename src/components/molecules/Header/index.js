@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {BackIcon} from '../../../assets';
 import {Gap} from '../../atoms';
+import {colors} from '../../../utils';
 
 const Header = ({title}) => {
   return (
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     paddingVertical: 30,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -28,6 +29,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 20,
     fontFamily: 'PlusJakartaSans-SemiBold',
-    color: '#112340',
+    color: colors.text.primary,
   },
 });

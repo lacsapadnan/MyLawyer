@@ -7,13 +7,16 @@ const mainColors = {
 export const colors = {
   primary: mainColors.cyan,
   secondary: mainColors.dark,
+  white: 'white',
+  black: 'black',
+  gray: mainColors.gray,
   text: {
     primary: mainColors.dark,
     secondary: mainColors.gray,
   },
   button: {
     primary: {
-      background: colors.primary,
+      background: mainColors.cyan,
       text: 'white',
     },
     secondary: {
