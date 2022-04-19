@@ -3,6 +3,7 @@ import React from 'react';
 import {Logo} from '../../assets/icon';
 import {ILGetStarted} from '../../assets';
 import {Button, Gap} from '../../components';
+import {fonts} from '../../utils';
 
 const GetStarted = ({navigation}) => {
   return (
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontFamily: 'PlusJakartaSans-SemiBold',
+    fontFamily: fonts.primary[600],
     fontSize: 28,
     fontWeight: '600',
     marginTop: 80,
