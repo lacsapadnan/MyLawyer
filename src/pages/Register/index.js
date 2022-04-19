@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input} from '../../components';
 
-export default function Register() {
+export default function Register({navigation}) {
   return (
     <View style={styles.pages}>
-      <Header title="Daftar Akun" />
+      <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <Input label="Nama Lengkap" />
         <Gap height={24} />

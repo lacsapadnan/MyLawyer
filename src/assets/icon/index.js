@@ -1,4 +1,4 @@
 import Logo from './logo.svg';
-import BackIcon from './back-arrow.svg';
+import IconBackDark from './back-arrow.svg';
 
-export {Logo, BackIcon};
+export {Logo, IconBackDark};
