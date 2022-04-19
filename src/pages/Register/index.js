@@ -15,7 +15,10 @@ export default function Register({navigation}) {
         <Gap height={24} />
         <Input label="Password" />
         <Gap height={80} />
-        <Button title="Selanjutnya" />
+        <Button
+          title="Selanjutnya"
+          onPress={() => navigation.navigate('UploadPhoto')}
+        />
       </View>
     </View>
   );
