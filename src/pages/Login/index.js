@@ -4,7 +4,7 @@ import {Logo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import {colors, fonts} from '../../utils';
 
-export default function Login() {
+export default function Login({navigation}) {
   return (
     <View style={styles.page}>
       <Logo />
@@ -15,7 +15,7 @@ export default function Login() {
       <Gap height={10} />
       <Link text="Forgot password?" size={12} />
       <Gap height={40} />
-      <Button title="Sign in" />
+      <Button title="Sign in" onPress={() => navigation.replace('MainApp')} />
       <Gap height={32} />
       <Link text="Create New Account" size={16} align="center" />
     </View>

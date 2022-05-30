@@ -13,6 +13,8 @@ export const colors = {
   text: {
     primary: mainColors.dark,
     secondary: mainColors.gray,
+    menuActive: mainColors.cyan,
+    menuInactivce: mainColors.gray,
   },
   button: {
     primary: {
