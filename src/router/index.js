@@ -9,6 +9,7 @@ import {
   Pengacara,
   Pesan,
   Tempat,
+  ListLawyer,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ButtomNavigator} from '../components';
@@ -69,6 +70,11 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListLawyer"
+        component={ListLawyer}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

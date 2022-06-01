@@ -6,6 +6,7 @@ import UploadPhoto from './UploadPhoto';
 import Pengacara from './Pengacara';
 import Pesan from './Pesan';
 import Tempat from './Tempat';
+import ListLawyer from './ListPengacara';
 
 export {
   Splash,
@@ -16,4 +17,5 @@ export {
   Pengacara,
   Pesan,
   Tempat,
+  ListLawyer,
 };

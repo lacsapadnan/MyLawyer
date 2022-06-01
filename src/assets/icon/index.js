@@ -1,5 +1,6 @@
 import Logo from './logo.svg';
 import IconBackDark from './back-arrow.svg';
+import IconBackLight from './back-arrow-light.svg';
 import UserPhotoNull from './user_photo_null.png';
 import AddPhoto from './add_photo.svg';
 import RemovePhoto from './remove_photo.svg';
@@ -9,10 +10,12 @@ import IconMessage from './ic-message.svg';
 import IconMessageActive from './ic-message-active.svg';
 import IconPlace from './ic-place.svg';
 import IconPlaceActive from './ic-place-active.svg';
+import ChevronRight from './chevron-right.svg';
 
 export {
   Logo,
   IconBackDark,
+  IconBackLight,
   UserPhotoNull,
   AddPhoto,
   RemovePhoto,
@@ -22,4 +25,5 @@ export {
   IconMessageActive,
   IconPlace,
   IconPlaceActive,
+  ChevronRight,
 };

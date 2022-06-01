@@ -5,6 +5,7 @@ import LawyerCategory from './LawyerCategory';
 import RecommendedLawyer from './RecommendedLawyer';
 import ListMessage from './ListMessage';
 import ListOffice from './ListOffice';
+import ListLawter from './ListLawyer';
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   RecommendedLawyer,
   ListMessage,
   ListOffice,
+  ListLawter,
 };

@@ -7,8 +7,9 @@ import {
   Gap,
 } from '../../components';
 import {colors, fonts} from '../../utils';
+import {JSONLawyerCategory} from '../../assets';
 
-export default function Pengacara() {
+export default function Pengacara({navigation}) {
   return (
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -19,10 +20,15 @@ export default function Pengacara() {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.category}>
               <Gap width={16} />
-              <LawyerCategory />
-              <LawyerCategory />
-              <LawyerCategory />
-              <LawyerCategory />
+              {JSONLawyerCategory.data.map(item => {
+                return (
+                  <LawyerCategory
+                    key={item.id}
+                    category={item.category}
+                    onPress={() => navigation.navigate('ListLawyer')}
+                  />
+                );
+              })}
               <Gap width={6} />
             </View>
           </ScrollView>

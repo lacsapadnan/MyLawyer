@@ -1,16 +1,28 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {ILCategory} from '../../../assets';
 import {colors} from '../../../utils/colors';
 import {fonts} from '../../../utils';
 
-export default function LawyerCategory() {
+export default function LawyerCategory({category, onPress}) {
+  const Icon = () => {
+    if (category === 'Hukum Perpajakan') {
+      return <Image source={ILCategory} style={styles.image} />;
+    }
+    if (category === 'Hukum Perdata') {
+      return <Image source={ILCategory} style={styles.image} />;
+    }
+    if (category === 'Hukum Kepailitan') {
+      return <Image source={ILCategory} style={styles.image} />;
+    }
+    return <Image source={ILCategory} style={styles.image} />;
+  };
   return (
-    <View style={styles.container}>
-      <Image source={ILCategory} style={styles.image} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Icon />
       <Text style={styles.label}>Konsultasi</Text>
-      <Text style={styles.category}>Hukum Perpajakan</Text>
-    </View>
+      <Text style={styles.category}>{category}</Text>
+    </TouchableOpacity>
   );
 }
 
