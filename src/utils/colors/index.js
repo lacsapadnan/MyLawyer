@@ -1,5 +1,6 @@
 const mainColors = {
   cyan: '#0BCAD4',
+  lightCyan: '#EDFCFD',
   dark: '#112340',
   gray: '#7D8797',
 };
@@ -26,4 +27,5 @@ export const colors = {
       text: 'black',
     },
   },
+  cardCategory: mainColors.lightCyan,
 };
