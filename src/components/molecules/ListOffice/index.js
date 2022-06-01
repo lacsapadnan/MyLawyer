@@ -1,15 +1,14 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {DummyPlace} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function ListOffice() {
+export default function ListOffice({image, office, address}) {
   return (
     <View style={styles.container}>
-      <Image source={DummyPlace} style={styles.image} />
+      <Image source={image} style={styles.image} />
       <View>
-        <Text style={styles.office}>Nama Kantor</Text>
-        <Text style={styles.address}>Alamat</Text>
+        <Text style={styles.office}>{office}</Text>
+        <Text style={styles.address}>{address}</Text>
       </View>
     </View>
   );
@@ -33,11 +32,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
+    width: 216,
   },
   address: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
     marginTop: 6,
+    width: 216,
   },
 });
