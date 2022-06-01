@@ -3,13 +3,13 @@ import React from 'react';
 import {Lawyer1} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const ListMessage = () => {
+const ListMessage = ({profile, name, lastChat}) => {
   return (
     <View style={styles.container}>
-      <Image source={Lawyer1} style={styles.avatar} />
+      <Image source={profile} style={styles.avatar} />
       <View>
-        <Text style={styles.name}>Nama Lawyer</Text>
-        <Text style={styles.chat}>Last chat</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.chat}>{lastChat}</Text>
       </View>
     </View>
   );
