@@ -6,6 +6,8 @@ import RecommendedLawyer from './RecommendedLawyer';
 import ListMessage from './ListMessage';
 import ListOffice from './ListOffice';
 import ListLawter from './ListLawyer';
+import ChatBubble from './ChatBubble';
+import ChatInput from '../ChatInput';
 
 export {
   Header,
@@ -16,4 +18,6 @@ export {
   ListMessage,
   ListOffice,
   ListLawter,
+  ChatBubble,
+  ChatInput,
 };

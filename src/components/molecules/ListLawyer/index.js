@@ -1,18 +1,18 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
 import {ChevronRight} from '../../../assets';
 
-export default function ListLawter({profile, name, region, type}) {
+export default function ListLawter({profile, name, region, type, onPress}) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={profile} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.region}>{region}</Text>
       </View>
       {type === 'next' && <ChevronRight />}
-    </View>
+    </TouchableOpacity>
   );
 }
 

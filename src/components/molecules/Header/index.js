@@ -2,8 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 import {Button, Gap} from '../../atoms';
+import ChatHeader from './ChatHeader';
 
 const Header = ({title, onPress, type}) => {
+  if (type === 'chat') {
+    return <ChatHeader />;
+  }
   return (
     <View style={styles.container(type)}>
       <Button

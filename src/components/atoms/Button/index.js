@@ -2,10 +2,15 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {colors} from '../../../utils';
 import IconButton from './IconButton';
+import SendButton from './SendButton';
 
-const Button = ({type, title, onPress, icon}) => {
+const Button = ({type, title, onPress, icon, isActive}) => {
   if (type === 'IconButton') {
     return <IconButton icon={icon} onPress={onPress} />;
+  }
+
+  if (type === 'SendButton') {
+    return <SendButton isActive={isActive} />;
   }
   return (
     <TouchableOpacity style={styles.container(type)} onPress={onPress}>

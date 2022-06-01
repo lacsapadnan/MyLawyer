@@ -4,15 +4,20 @@ import {Header, ListLawter} from '../../components';
 import {Lawyer1} from '../../assets';
 import {colors} from '../../utils';
 
-export default function ListLawyer() {
+export default function ListLawyer({navigation}) {
   return (
     <View style={styles.page}>
-      <Header type="dark" title="Pilih Pengacara" />
+      <Header
+        type="dark"
+        title="Pilih Pengacara"
+        onPress={() => navigation.navigate('Pengacara')}
+      />
       <ListLawter
         type="next"
         name="Nama lawyer"
         region="Jakarta"
         profile={Lawyer1}
+        onPress={() => navigation.navigate('Chatting')}
       />
       <ListLawter
         type="next"

@@ -7,6 +7,7 @@ import Pengacara from './Pengacara';
 import Pesan from './Pesan';
 import Tempat from './Tempat';
 import ListLawyer from './ListPengacara';
+import Chatting from './Chatting';
 
 export {
   Splash,
@@ -18,4 +19,5 @@ export {
   Pesan,
   Tempat,
   ListLawyer,
+  Chatting,
 };

@@ -4,14 +4,18 @@ const mainColors = {
   dark: '#112340',
   gray: '#7D8797',
   lightGray: '#E9E9E9',
+  mediumGray: '#EDEEF0',
+  blue: '#0066CB',
 };
 
 export const colors = {
   primary: mainColors.cyan,
   secondary: mainColors.dark,
+  tetriary: mainColors.blue,
   white: 'white',
   black: 'black',
   gray: mainColors.gray,
+  input: mainColors.mediumGray,
   text: {
     primary: mainColors.dark,
     secondary: mainColors.gray,
