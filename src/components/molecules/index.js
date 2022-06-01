@@ -4,6 +4,8 @@ import HomeProfile from './HomeProfile';
 import LawyerCategory from './LawyerCategory';
 import RecommendedLawyer from './RecommendedLawyer';
 import ListMessage from './ListMessage';
+import ListOffice from './ListOffice';
+
 export {
   Header,
   ButtomNavigator,
@@ -11,4 +13,5 @@ export {
   LawyerCategory,
   RecommendedLawyer,
   ListMessage,
+  ListOffice,
 };

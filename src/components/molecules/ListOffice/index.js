@@ -1,21 +1,19 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {Lawyer1} from '../../../assets';
+import {DummyPlace} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-const ListMessage = () => {
+export default function ListOffice() {
   return (
     <View style={styles.container}>
-      <Image source={Lawyer1} style={styles.avatar} />
+      <Image source={DummyPlace} style={styles.image} />
       <View>
-        <Text style={styles.name}>Nama Lawyer</Text>
-        <Text style={styles.chat}>Last chat</Text>
+        <Text style={styles.office}>Nama Kantor</Text>
+        <Text style={styles.address}>Alamat</Text>
       </View>
     </View>
   );
-};
-
-export default ListMessage;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -25,20 +23,21 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     alignItems: 'center',
   },
-  avatar: {
-    width: 46,
-    height: 46,
-    borderRadius: 46 / 2,
-    marginRight: 12,
+  image: {
+    width: 80,
+    height: 60,
+    borderRadius: 11,
+    marginRight: 16,
   },
-  name: {
+  office: {
     fontSize: 16,
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
   },
-  chat: {
+  address: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
+    marginTop: 6,
   },
 });

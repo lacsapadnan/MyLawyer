@@ -3,6 +3,7 @@ const mainColors = {
   lightCyan: '#EDFCFD',
   dark: '#112340',
   gray: '#7D8797',
+  lightGray: '#E9E9E9',
 };
 
 export const colors = {
@@ -28,4 +29,5 @@ export const colors = {
     },
   },
   cardCategory: mainColors.lightCyan,
+  border: mainColors.lightGray,
 };
