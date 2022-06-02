@@ -4,7 +4,7 @@ import {List} from '../../components';
 import {colors, fonts} from '../../utils';
 import {Lawyer1, Lawyer2, Lawyer3} from '../../assets';
 
-export default function Pesan() {
+export default function Pesan({navigation}) {
   const [lawyers] = useState([
     {
       id: 1,
@@ -35,6 +35,7 @@ export default function Pesan() {
             profile={lawyer.profile}
             name={lawyer.name}
             desc={lawyer.desc}
+            onPress={() => navigation.navigate('Chatting')}
           />
         );
       })}
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
     marginTop: 30,
+    marginBottom: 24,
     marginLeft: 16,
   },
 });

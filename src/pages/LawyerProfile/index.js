@@ -17,7 +17,10 @@ export default function LawyerProfile({navigation}) {
       <ProfieItem label="Kantor" value="JL. Jend. Sudirman" />
       <ProfieItem label="No Induk Advokat" value="1289371298371" />
       <View style={styles.action}>
-        <Button title="Mulai konsultasi" />
+        <Button
+          title="Mulai konsultasi"
+          onPress={() => navigation.navigate('Chatting')}
+        />
       </View>
     </View>
   );

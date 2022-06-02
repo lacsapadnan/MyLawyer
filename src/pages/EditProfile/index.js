@@ -6,13 +6,10 @@ import {colors} from '../../utils';
 export default function EditProfile({navigation}) {
   return (
     <View style={styles.page}>
-      <Header
-        title="Edit Profile"
-        onPress={() => navigation.navigate('UserProfile')}
-      />
+      <Header title="Edit Profile" onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Profile />
+          <Profile isRemove />
           <Gap height={24} />
           <Input label="Nama lengkap" />
           <Gap height={24} />
@@ -22,7 +19,10 @@ export default function EditProfile({navigation}) {
           <Gap height={24} />
           <Input label="Password" />
           <Gap height={40} />
-          <Button title="Simpan Profile" />
+          <Button
+            title="Simpan Profile"
+            onPress={() => navigation.goBack('UserProfile')}
+          />
         </View>
       </ScrollView>
     </View>

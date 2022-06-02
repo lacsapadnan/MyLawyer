@@ -4,9 +4,9 @@ import {colors, fonts} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 import ChatHeader from './ChatHeader';
 
-const Header = ({title, onPress, type}) => {
+const Header = ({title, category, onPress, type}) => {
   if (type === 'chat') {
-    return <ChatHeader />;
+    return <ChatHeader title={title} category={category} onPress={onPress} />;
   }
   return (
     <View style={styles.container(type)}>

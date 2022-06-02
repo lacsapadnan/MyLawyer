@@ -9,7 +9,8 @@ export default function Chatting({navigation}) {
       <Header
         type="chat"
         title="Hotman Paris Hutapea"
-        onPress={() => navigation.navigate('ListLawyer')}
+        category="Hukum Pidana"
+        onPress={() => navigation.goBack()}
       />
       <View style={styles.content}>
         <Text style={styles.chatDate}>Rabu, 1 Juni 2022</Text>

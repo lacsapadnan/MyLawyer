@@ -4,10 +4,10 @@ import {Button, Gap, Header, Link} from '../../components';
 import {AddPhoto, UserPhotoNull} from '../../assets';
 import {colors, fonts} from '../../utils';
 
-const UploadPhoto = () => {
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Upload Photo" />
+      <Header title="Upload Photo" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <View style={styles.profile}>
           <View style={styles.avatarWrapper}>
@@ -18,9 +18,17 @@ const UploadPhoto = () => {
           <Text style={styles.job}>User Job</Text>
         </View>
         <View>
-          <Button title="Upload dan Lanjutkan" />
+          <Button
+            title="Upload dan Lanjutkan"
+            onPress={() => navigation.replace('MainApp')}
+          />
           <Gap height={32} />
-          <Link text="Lewati" align="center" size={16} />
+          <Link
+            text="Lewati"
+            align="center"
+            size={16}
+            onPress={() => navigation.replace('MainApp')}
+          />
         </View>
       </View>
     </View>

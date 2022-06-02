@@ -3,12 +3,12 @@ import React from 'react';
 import {RemovePhoto, User} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function Profile({name, desc}) {
+export default function Profile({name, desc, isRemove}) {
   return (
     <View style={styles.container}>
       <View style={styles.borderProfile}>
         <Image source={User} style={styles.avatar} />
-        <RemovePhoto style={styles.removePhoto} />
+        {isRemove && <RemovePhoto style={styles.removePhoto} />}
       </View>
       {name && (
         <View>

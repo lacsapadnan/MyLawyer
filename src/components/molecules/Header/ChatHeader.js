@@ -4,13 +4,13 @@ import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 import {Lawyer1} from '../../../assets';
 
-export default function ChatHeader() {
+export default function ChatHeader({onPress, title, category}) {
   return (
     <View style={styles.container}>
-      <Button type="IconButton" icon="back-light" />
+      <Button type="IconButton" icon="back-light" onPress={onPress} />
       <View style={styles.content}>
-        <Text style={styles.name}>Nama Lawyer</Text>
-        <Text style={styles.category}>Kategori</Text>
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.category}>{category}</Text>
       </View>
       <Image style={styles.avatar} source={Lawyer1} />
     </View>
