@@ -10,6 +10,7 @@ import ListLawyer from './ListPengacara';
 import Chatting from './Chatting';
 import UserProfile from './UserProfile';
 import EditProfile from './EditProfile';
+import LawyerProfile from './LawyerProfile';
 
 export {
   Splash,
@@ -24,4 +25,5 @@ export {
   Chatting,
   UserProfile,
   EditProfile,
+  LawyerProfile,
 };

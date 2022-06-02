@@ -7,7 +7,7 @@ import {
   Gap,
 } from '../../components';
 import {colors, fonts} from '../../utils';
-import {JSONLawyerCategory} from '../../assets';
+import {JSONLawyerCategory, Lawyer1} from '../../assets';
 
 export default function Pengacara({navigation}) {
   return (
@@ -34,12 +34,41 @@ export default function Pengacara({navigation}) {
           </ScrollView>
         </View>
         <Text style={styles.recommendLabel}>Rekomendasi Pengacara</Text>
-        <RecommendedLawyer />
-        <RecommendedLawyer />
-        <RecommendedLawyer />
-        <RecommendedLawyer />
-        <RecommendedLawyer />
-        <RecommendedLawyer />
+        <RecommendedLawyer
+          name="Nama Pengacara"
+          category="Hukum Pidana"
+          region="Jakarta"
+          avatar={Lawyer1}
+          onPress={() => navigation.navigate('LawyerProfile')}
+        />
+        <RecommendedLawyer
+          name="Nama Pengacara"
+          category="Hukum Pidana"
+          region="Jakarta"
+          avatar={Lawyer1}
+          onPress={() => navigation.navigate('LawyerProfile')}
+        />
+        <RecommendedLawyer
+          name="Nama Pengacara"
+          category="Hukum Pidana"
+          region="Jakarta"
+          avatar={Lawyer1}
+          onPress={() => navigation.navigate('LawyerProfile')}
+        />
+        <RecommendedLawyer
+          name="Nama Pengacara"
+          category="Hukum Pidana"
+          region="Jakarta"
+          avatar={Lawyer1}
+          onPress={() => navigation.navigate('LawyerProfile')}
+        />
+        <RecommendedLawyer
+          name="Nama Pengacara"
+          category="Hukum Pidana"
+          region="Jakarta"
+          avatar={Lawyer1}
+          onPress={() => navigation.navigate('LawyerProfile')}
+        />
       </ScrollView>
     </View>
   );

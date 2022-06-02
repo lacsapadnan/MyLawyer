@@ -44,12 +44,14 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
     marginTop: 16,
+    textAlign: 'center',
   },
   desc: {
     fontSize: 16,
     fontFamily: fonts.primary[400],
     color: colors.text.secondary,
     marginTop: 2,
+    textAlign: 'center',
   },
   removePhoto: {
     position: 'absolute',

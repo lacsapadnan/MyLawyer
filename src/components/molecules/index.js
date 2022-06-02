@@ -9,6 +9,7 @@ import List from './List';
 import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
 import Profile from './Profile';
+import ProfileItem from './ProfileItem';
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   ChatBubble,
   ChatInput,
   Profile,
+  ProfileItem,
 };

@@ -13,6 +13,7 @@ import {
   Chatting,
   UserProfile,
   EditProfile,
+  LawyerProfile,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ButtomNavigator} from '../components';
@@ -93,6 +94,11 @@ const Router = () => {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LawyerProfile"
+        component={LawyerProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
