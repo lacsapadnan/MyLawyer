@@ -9,6 +9,7 @@ import Tempat from './Tempat';
 import ListLawyer from './ListPengacara';
 import Chatting from './Chatting';
 import UserProfile from './UserProfile';
+import EditProfile from './EditProfile';
 
 export {
   Splash,
@@ -22,4 +23,5 @@ export {
   ListLawyer,
   Chatting,
   UserProfile,
+  EditProfile,
 };
