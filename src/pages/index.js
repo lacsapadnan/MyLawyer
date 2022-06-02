@@ -8,6 +8,7 @@ import Pesan from './Pesan';
 import Tempat from './Tempat';
 import ListLawyer from './ListPengacara';
 import Chatting from './Chatting';
+import UserProfile from './UserProfile';
 
 export {
   Splash,
@@ -20,4 +21,5 @@ export {
   Tempat,
   ListLawyer,
   Chatting,
+  UserProfile,
 };

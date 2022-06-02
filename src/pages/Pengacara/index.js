@@ -14,7 +14,7 @@ export default function Pengacara({navigation}) {
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Gap height={30} />
-        <HomeProfile />
+        <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
         <Text style={styles.welcome}>Mau konsultasi hukum apa hari ini?</Text>
         <View style={styles.wrapperScroll}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>

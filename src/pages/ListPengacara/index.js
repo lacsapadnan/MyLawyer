@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Header, ListLawter} from '../../components';
+import {Header, List} from '../../components';
 import {Lawyer1} from '../../assets';
 import {colors} from '../../utils';
 
@@ -12,25 +12,15 @@ export default function ListLawyer({navigation}) {
         title="Pilih Pengacara"
         onPress={() => navigation.navigate('Pengacara')}
       />
-      <ListLawter
+      <List
         type="next"
         name="Nama lawyer"
-        region="Jakarta"
+        desc="Jakarta"
         profile={Lawyer1}
         onPress={() => navigation.navigate('Chatting')}
       />
-      <ListLawter
-        type="next"
-        name="Nama lawyer"
-        region="Jakarta"
-        profile={Lawyer1}
-      />
-      <ListLawter
-        type="next"
-        name="Nama lawyer"
-        region="Jakarta"
-        profile={Lawyer1}
-      />
+      <List type="next" name="Nama lawyer" desc="Jakarta" profile={Lawyer1} />
+      <List type="next" name="Nama lawyer" desc="Jakarta" profile={Lawyer1} />
     </View>
   );
 }

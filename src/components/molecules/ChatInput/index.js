@@ -1,7 +1,7 @@
 import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
-import {colors, fonts} from '../../utils';
-import {Button} from '../atoms';
+import {colors, fonts} from '../../../utils';
+import {Button} from '../../atoms';
 
 export default function ChatInput() {
   return (

@@ -1,15 +1,22 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
-import {ChevronRight} from '../../../assets';
+import {ChevronRight, IconUser} from '../../../assets';
 
-export default function ListLawter({profile, name, region, type, onPress}) {
+export default function List({profile, name, desc, type, onPress, icon}) {
+  const Icon = () => {
+    if (icon === 'edit-profile') {
+      return <IconUser />;
+    }
+    return <IconUser />;
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={profile} style={styles.avatar} />
+      {icon ? <Icon /> : <Image source={profile} style={styles.avatar} />}
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.region}>{region}</Text>
+        <Text style={styles.desc}>{desc}</Text>
       </View>
       {type === 'next' && <ChevronRight />}
     </TouchableOpacity>
@@ -20,8 +27,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
   },
-  region: {
+  desc: {
     fontSize: 12,
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,

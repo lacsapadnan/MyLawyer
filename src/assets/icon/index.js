@@ -13,6 +13,7 @@ import IconPlaceActive from './ic-place-active.svg';
 import ChevronRight from './chevron-right.svg';
 import SendActive from './send-active.svg';
 import SendDisable from './send-disable.svg';
+import IconUser from './ic-user.svg';
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   ChevronRight,
   SendActive,
   SendDisable,
+  IconUser,
 };
