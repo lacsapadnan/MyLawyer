@@ -6,6 +6,7 @@ const mainColors = {
   lightGray: '#E9E9E9',
   mediumGray: '#EDEEF0',
   blue: '#0066CB',
+  blackTransparent: 'rgba(0, 0, 0, 0.5)',
 };
 
 export const colors = {
@@ -34,4 +35,5 @@ export const colors = {
   },
   cardCategory: mainColors.lightCyan,
   border: mainColors.lightGray,
+  loadingBackground: mainColors.blackTransparent,
 };
