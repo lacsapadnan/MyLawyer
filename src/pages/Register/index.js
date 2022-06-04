@@ -23,10 +23,20 @@ export default function Register({navigation}) {
       .then(success => {
         setLoading(false);
         setForm('reset');
+
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+        };
+
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
         console.log('register success', success);
       })
       .catch(error => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         setLoading(false);
         showMessage({
@@ -34,6 +44,7 @@ export default function Register({navigation}) {
           type: 'default',
           backgroundColor: colors.error,
           color: colors.white,
+          duration: 5000,
         });
       });
   };
