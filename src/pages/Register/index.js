@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Fire} from '../../config';
-import {useForm} from '../../utils';
+import {useForm, colors} from '../../utils';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 export default function Register({navigation}) {
   const [form, setForm] = useForm({
@@ -28,7 +29,12 @@ export default function Register({navigation}) {
         const errorCode = error.code;
         const errorMessage = error.message;
         setLoading(false);
-        console.log('register error', errorCode, errorMessage);
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
       });
   };
 
