@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../../utils';
 import IconButton from './IconButton';
@@ -11,6 +11,14 @@ const Button = ({type, title, onPress, icon, isActive}) => {
 
   if (type === 'SendButton') {
     return <SendButton isActive={isActive} />;
+  }
+
+  if (isActive === false) {
+    return (
+      <View style={styles.isActive}>
+        <Text style={styles.disableText}>{title}</Text>
+      </View>
+    );
   }
   return (
     <TouchableOpacity style={styles.container(type)} onPress={onPress}>
@@ -27,10 +35,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 8,
   }),
+  isActive: {
+    backgroundColor: colors.button.disable.background,
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
   text: type => ({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
     color: type === 'secondary' ? colors.secondary : colors.white,
   }),
+  disableText: {
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: colors.button.disable.text,
+  },
 });

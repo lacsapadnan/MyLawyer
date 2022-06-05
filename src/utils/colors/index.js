@@ -4,6 +4,7 @@ const mainColors = {
   dark: '#112340',
   gray: '#7D8797',
   lightGray: '#E9E9E9',
+  disable: '#B1B7C2',
   mediumGray: '#EDEEF0',
   blue: '#0066CB',
   blackTransparent: 'rgba(0, 0, 0, 0.5)',
@@ -32,6 +33,10 @@ export const colors = {
     secondary: {
       background: 'white',
       text: 'black',
+    },
+    disable: {
+      background: mainColors.lightGray,
+      text: mainColors.disable,
     },
   },
   cardCategory: mainColors.lightCyan,
