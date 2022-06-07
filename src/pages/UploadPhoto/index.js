@@ -6,7 +6,8 @@ import {colors, fonts} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 
-const UploadPhoto = ({navigation}) => {
+const UploadPhoto = ({navigation, route}) => {
+  const {fullName, profession} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(UserPhotoNull);
   const getImage = () => {
@@ -37,8 +38,8 @@ const UploadPhoto = ({navigation}) => {
             {hasPhoto && <RemovePhoto style={styles.AddPhoto} />}
             {!hasPhoto && <AddPhoto style={styles.AddPhoto} />}
           </TouchableOpacity>
-          <Text style={styles.name}>Username</Text>
-          <Text style={styles.job}>User Job</Text>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.job}>{profession}</Text>
         </View>
         <View>
           <Button

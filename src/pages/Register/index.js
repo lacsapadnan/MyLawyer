@@ -17,7 +17,12 @@ export default function Register({navigation}) {
 
   const onContinue = () => {
     console.log(form);
-
+    const data = {
+      fullName: form.fullName,
+      profession: form.profession,
+      email: form.email,
+    };
+    navigation.navigate('UploadPhoto', {data});
     setLoading(true);
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
@@ -36,9 +41,7 @@ export default function Register({navigation}) {
           .set(data);
 
         storeData('user', data);
-        navigation.navigate('UploadPhoto');
-
-        console.log('register success', success);
+        navigation.navigate('UploadPhoto', data);
       })
       .catch(error => {
         const errorMessage = error.message;
