@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {Button, Gap, Header, Link} from '../../components';
 import {AddPhoto, RemovePhoto, UserPhotoNull} from '../../assets';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, storeData} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 import {Fire} from '../../config';
@@ -39,6 +39,11 @@ const UploadPhoto = ({navigation, route}) => {
     Fire.database()
       .ref('users/' + uid + '/')
       .update({photo: saveToDB});
+
+    const data = route.params;
+    data.photo = saveToDB;
+
+    storeData('user', data);
 
     navigation.replace('MainApp');
   };
