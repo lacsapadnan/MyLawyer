@@ -13,23 +13,26 @@ const UploadPhoto = ({navigation, route}) => {
   const [photo, setPhoto] = useState(UserPhotoNull);
   const [saveToDB, setSaveToDB] = useState('');
   const getImage = () => {
-    launchImageLibrary({includeBase64: true}, response => {
-      if (response.didCancel || response.error) {
-        showMessage({
-          message: 'Oops, anda tidak memilih foto apapun',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
-      } else {
-        const source = {uri: response.assets[0].uri};
-        setSaveToDB(
-          `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
-        );
-        setPhoto(source);
-        setHasPhoto(true);
-      }
-    });
+    launchImageLibrary(
+      {includeBase64: true, quality: 0.5, maxWidth: 200, maxHeight: 200},
+      response => {
+        if (response.didCancel || response.error) {
+          showMessage({
+            message: 'Oops, anda tidak memilih foto apapun',
+            type: 'default',
+            backgroundColor: colors.error,
+            color: colors.white,
+          });
+        } else {
+          const source = {uri: response.assets[0].uri};
+          setSaveToDB(
+            `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
+          );
+          setPhoto(source);
+          setHasPhoto(true);
+        }
+      },
+    );
   };
 
   const uploadAndContinue = () => {
