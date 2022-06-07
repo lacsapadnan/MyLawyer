@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Fire} from '../../config';
-import {useForm, colors, storeData, getData} from '../../utils';
+import {useForm, colors, storeData} from '../../utils';
 import {showMessage} from 'react-native-flash-message';
 
 export default function Register({navigation}) {
@@ -16,13 +16,6 @@ export default function Register({navigation}) {
   const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
-    console.log(form);
-    const data = {
-      fullName: form.fullName,
-      profession: form.profession,
-      email: form.email,
-    };
-    navigation.navigate('UploadPhoto', {data});
     setLoading(true);
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
@@ -31,6 +24,7 @@ export default function Register({navigation}) {
         setForm('reset');
 
         const data = {
+          uid: success.user.uid,
           fullName: form.fullName,
           profession: form.profession,
           email: form.email,

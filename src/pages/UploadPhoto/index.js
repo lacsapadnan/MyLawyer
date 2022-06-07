@@ -5,14 +5,15 @@ import {AddPhoto, RemovePhoto, UserPhotoNull} from '../../assets';
 import {colors, fonts} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
+import {Fire} from '../../config';
 
 const UploadPhoto = ({navigation, route}) => {
-  const {fullName, profession} = route.params;
+  const {fullName, profession, uid} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(UserPhotoNull);
+  const [saveToDB, setSaveToDB] = useState('');
   const getImage = () => {
-    launchImageLibrary({}, response => {
-      console.log('response', response);
+    launchImageLibrary({includeBase64: true}, response => {
       if (response.didCancel || response.error) {
         showMessage({
           message: 'Oops, anda tidak memilih foto apapun',
@@ -21,13 +22,23 @@ const UploadPhoto = ({navigation, route}) => {
           color: colors.white,
         });
       } else {
-        const source = {uri: response.uri};
+        const source = {uri: response.assets[0].uri};
+        setSaveToDB(
+          `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
+        );
         setPhoto(source);
         setHasPhoto(true);
       }
     });
   };
 
+  const uploadAndContinue = () => {
+    Fire.database()
+      .ref('users/' + uid + '/')
+      .update({photo: saveToDB});
+
+    navigation.replace('MainApp');
+  };
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" onPress={() => navigation.goBack()} />
@@ -45,7 +56,7 @@ const UploadPhoto = ({navigation, route}) => {
           <Button
             isActive={hasPhoto}
             title="Upload dan Lanjutkan"
-            onPress={() => navigation.replace('MainApp')}
+            onPress={uploadAndContinue}
           />
           <Gap height={32} />
           <Link
