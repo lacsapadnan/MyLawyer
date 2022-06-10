@@ -27,8 +27,22 @@ export default function EditProfile({navigation}) {
     });
   }, []);
 
-  const updateProfile = () => {
-    console.log('profile :', profile);
+  const updatePassword = () => {
+    Fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        user.updatePassword(password).catch(err => {
+          showMessage({
+            message: err.message,
+            type: 'danger',
+            backgroundColor: colors.error,
+            color: colors.white,
+          });
+        });
+      }
+    });
+  };
+
+  const updateDataProfile = () => {
     const data = profile;
     data.photo = saveToDB;
 
@@ -47,6 +61,41 @@ export default function EditProfile({navigation}) {
           color: colors.white,
         });
       });
+  };
+
+  const updateProfile = () => {
+    console.log('profile :', profile);
+    console.log('new Password :', password);
+
+    if (password.length > 0) {
+      if (password.length < 6) {
+        showMessage({
+          message: 'Password kurang dari 6 karakter',
+          type: 'danger',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      } else {
+        updatePassword();
+        updateDataProfile();
+        navigation.replace('MainApp');
+        showMessage({
+          message: 'Update Profile Success',
+          type: 'success',
+          backgroundColor: colors.success,
+          color: colors.white,
+        });
+      }
+    } else {
+      updateDataProfile();
+      navigation.replace('MainApp');
+      showMessage({
+        message: 'Update Profile Success',
+        type: 'success',
+        backgroundColor: colors.success,
+        color: colors.white,
+      });
+    }
   };
 
   const changeText = (key, value) => {
@@ -99,7 +148,12 @@ export default function EditProfile({navigation}) {
           <Gap height={24} />
           <Input label="Email" value={profile.email} isDisable />
           <Gap height={24} />
-          <Input label="Password" value={password} />
+          <Input
+            label="Password"
+            value={password}
+            secureTextEntry
+            onChangeText={value => setPassword(value)}
+          />
           <Gap height={40} />
           <Button title="Simpan Profile" onPress={updateProfile} />
         </View>
