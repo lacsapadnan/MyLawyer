@@ -1,22 +1,23 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {Logo} from '../../assets';
-import {Button, Gap, Input, Link, Loading} from '../../components';
+import {Button, Gap, Input, Link} from '../../components';
 import {colors, fonts, storeData, useForm} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
 
 export default function Login({navigation}) {
   const [form, setForm] = useForm({email: '', password: ''});
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const login = () => {
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
 
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         Fire.database()
           .ref(`users/${res.user.uid}/`)
           .once('value')
@@ -28,7 +29,7 @@ export default function Login({navigation}) {
           });
       })
       .catch(err => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         showMessage({
           message: err.message,
           type: 'default',
@@ -37,6 +38,7 @@ export default function Login({navigation}) {
         });
       });
   };
+
   return (
     <>
       <View style={styles.page}>
@@ -69,7 +71,6 @@ export default function Login({navigation}) {
           />
         </ScrollView>
       </View>
-      {loading && <Loading />}
     </>
   );
 }

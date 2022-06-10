@@ -4,6 +4,7 @@ import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Fire} from '../../config';
 import {useForm, colors, storeData} from '../../utils';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
 
 export default function Register({navigation}) {
   const [form, setForm] = useForm({
@@ -13,14 +14,14 @@ export default function Register({navigation}) {
     password: '',
   });
 
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const onContinue = () => {
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         setForm('reset');
 
         const data = {
@@ -39,7 +40,7 @@ export default function Register({navigation}) {
       })
       .catch(error => {
         const errorMessage = error.message;
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         showMessage({
           message: errorMessage,
           type: 'default',
@@ -85,7 +86,6 @@ export default function Register({navigation}) {
           </ScrollView>
         </View>
       </View>
-      {loading && <Loading />}
     </>
   );
 }

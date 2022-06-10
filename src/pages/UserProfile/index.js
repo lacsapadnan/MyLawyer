@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import {Gap, Header, List, Profile} from '../../components';
 import {colors, getData} from '../../utils';
 import {UserPhotoNull} from '../../assets';
+import {Fire} from '../../config';
+import {showMessage} from 'react-native-flash-message';
 
 export default function UserProfile({navigation}) {
   const [profile, setProfile] = useState({
@@ -18,6 +20,28 @@ export default function UserProfile({navigation}) {
       setProfile(data);
     });
   }, []);
+
+  const signOut = () => {
+    Fire.auth()
+      .signOut()
+      .then(() => {
+        console.log('sign out success ');
+        navigation.replace('GetStarted');
+        showMessage({
+          message: 'Sign out success',
+          type: 'success',
+          color: colors.white,
+        });
+      })
+      .catch(err => {
+        showMessage({
+          message: err.message,
+          type: 'danger',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      });
+  };
 
   return (
     <View style={styles.page}>
@@ -43,6 +67,7 @@ export default function UserProfile({navigation}) {
         desc="Keluar dari aplikasi"
         type="next"
         icon="edit-profile"
+        onPress={signOut}
       />
     </View>
   );
