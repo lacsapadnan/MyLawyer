@@ -11,27 +11,24 @@ export default function Login({navigation}) {
   const [loading, setLoading] = useState(false);
 
   const login = () => {
-    console.log('form: ', form);
     setLoading(true);
+
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        console.log('sucess: ', res);
         setLoading(false);
         Fire.database()
           .ref(`users/${res.user.uid}/`)
           .once('value')
           .then(resDb => {
-            console.log('data user: ', resDb.val());
             if (resDb.val()) {
               storeData('user', resDb.val());
-              navigation.navigate('MainApp');
+              navigation.replace('MainApp');
             }
           });
       })
       .catch(err => {
-        console.log('error: ', err);
-        setLoading(true);
+        setLoading(false);
         showMessage({
           message: err.message,
           type: 'default',

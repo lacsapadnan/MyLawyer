@@ -1,11 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {Logo} from '../../assets';
+import {Fire} from '../../config';
 
-export default function Splash({navigation}) {
+const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('GetStarted');
+      Fire.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log('user :', user);
+          navigation.replace('MainApp');
+        } else {
+          navigation.navigate('GetStarted');
+        }
+      });
     }, 3000);
   }, [navigation]);
   return (
@@ -14,7 +22,9 @@ export default function Splash({navigation}) {
       <Text style={styles.title}>My Lawyer App</Text>
     </View>
   );
-}
+};
+
+export default Splash;
 
 const styles = StyleSheet.create({
   page: {
