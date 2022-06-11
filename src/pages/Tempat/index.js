@@ -12,7 +12,6 @@ export default function Tempat() {
       .ref('office/')
       .once('value')
       .then(res => {
-        console.log('data :', res.val());
         if (res.val()) {
           setOffice(res.val());
         }

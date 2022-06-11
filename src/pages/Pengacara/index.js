@@ -1,15 +1,31 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   LawyerCategory,
   HomeProfile,
   RecommendedLawyer,
   Gap,
 } from '../../components';
-import {colors, fonts} from '../../utils';
-import {JSONLawyerCategory, Lawyer1} from '../../assets';
+import {colors, fonts, showError} from '../../utils';
+import {Fire} from '../../config';
+import {Lawyer1} from '../../assets';
 
 export default function Pengacara({navigation}) {
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    Fire.database()
+      .ref('categories/')
+      .once('value')
+      .then(res => {
+        if (res.val()) {
+          setCategory(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  }, []);
   return (
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -20,7 +36,7 @@ export default function Pengacara({navigation}) {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.category}>
               <Gap width={16} />
-              {JSONLawyerCategory.data.map(item => {
+              {category.map(item => {
                 return (
                   <LawyerCategory
                     key={item.id}
