@@ -1,10 +1,27 @@
 import {StyleSheet, Text, View, ImageBackground} from 'react-native';
-import React from 'react';
-import {DummyPlace, PlaceBg} from '../../assets';
-import {colors, fonts} from '../../utils';
+import React, {useEffect, useState} from 'react';
+import {PlaceBg} from '../../assets';
+import {colors, fonts, showError} from '../../utils';
 import {ListOffice} from '../../components';
+import {Fire} from '../../config';
 
 export default function Tempat() {
+  const [office, setOffice] = useState([]);
+  useEffect(() => {
+    Fire.database()
+      .ref('office/')
+      .once('value')
+      .then(res => {
+        console.log('data :', res.val());
+        if (res.val()) {
+          setOffice(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  }, []);
+
   return (
     <View style={styles.page}>
       <ImageBackground source={PlaceBg} style={styles.background}>
@@ -12,21 +29,16 @@ export default function Tempat() {
         <Text style={styles.count}>3 Tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListOffice
-          office="Law Firm Hotman Paris & Partner"
-          address="Gedung Summitmas 2, Jl. Jenderal Sudirman"
-          image={DummyPlace}
-        />
-        <ListOffice
-          office="Law Offices Otto Hasibuan & Associates"
-          address="Komp. Duta Merlin, Jl. Gajah Mada No.3 - 5 Petojo Utara"
-          image={DummyPlace}
-        />
-        <ListOffice
-          office="Kantor Advokat Kailimang & Ponto"
-          address="Jl. HR Rasuna Said Kav 5 Bl X-7 Karet Kuningan Setiabudi"
-          image={DummyPlace}
-        />
+        {office.map(item => {
+          return (
+            <ListOffice
+              key={item.id}
+              name={item.name}
+              address={item.address}
+              image={item.image}
+            />
+          );
+        })}
       </View>
     </View>
   );

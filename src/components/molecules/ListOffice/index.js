@@ -2,12 +2,12 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
 
-export default function ListOffice({image, office, address}) {
+export default function ListOffice({image, name, address}) {
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
       <View>
-        <Text style={styles.office}>{office}</Text>
+        <Text style={styles.name}>{name}</Text>
         <Text style={styles.address}>{address}</Text>
       </View>
     </View>
