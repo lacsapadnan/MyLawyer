@@ -14,7 +14,6 @@ export const showSuccess = message => {
   showMessage({
     message: message,
     type: 'success',
-    backgroundColor: colors.error,
     color: colors.white,
   });
 };
