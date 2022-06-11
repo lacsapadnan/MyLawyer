@@ -2,9 +2,8 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Logo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
-import {colors, fonts, storeData, useForm} from '../../utils';
+import {colors, fonts, showError, storeData, useForm} from '../../utils';
 import {Fire} from '../../config';
-import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 
 export default function Login({navigation}) {
@@ -30,12 +29,7 @@ export default function Login({navigation}) {
       })
       .catch(err => {
         dispatch({type: 'SET_LOADING', value: false});
-        showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(err.message);
       });
   };
 

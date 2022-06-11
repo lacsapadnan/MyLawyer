@@ -1,7 +1,7 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {Button, Gap, Header, Input, Profile} from '../../components';
-import {colors, getData, storeData} from '../../utils';
+import {colors, getData, showError, showSuccess, storeData} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -31,12 +31,7 @@ export default function EditProfile({navigation}) {
     Fire.auth().onAuthStateChanged(user => {
       if (user) {
         user.updatePassword(password).catch(err => {
-          showMessage({
-            message: err.message,
-            type: 'danger',
-            backgroundColor: colors.error,
-            color: colors.white,
-          });
+          showError(err.message);
         });
       }
     });
@@ -54,47 +49,24 @@ export default function EditProfile({navigation}) {
         storeData('user', data);
       })
       .catch(err => {
-        showMessage({
-          message: err.message,
-          type: 'danger',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(err.message);
       });
   };
 
   const updateProfile = () => {
-    console.log('profile :', profile);
-    console.log('new Password :', password);
-
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Password kurang dari 6 karakter',
-          type: 'danger',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError('Password kurang dari 6 karakter');
       } else {
         updatePassword();
         updateDataProfile();
         navigation.replace('MainApp');
-        showMessage({
-          message: 'Update Profile Success',
-          type: 'success',
-          backgroundColor: colors.success,
-          color: colors.white,
-        });
+        showSuccess('Profile berhasil diperbarui');
       }
     } else {
       updateDataProfile();
       navigation.replace('MainApp');
-      showMessage({
-        message: 'Update Profile Success',
-        type: 'success',
-        backgroundColor: colors.success,
-        color: colors.white,
-      });
+      showSuccess('Profile berhasil diperbarui');
     }
   };
 
@@ -110,12 +82,7 @@ export default function EditProfile({navigation}) {
       {includeBase64: true, quality: 0.5, maxWidth: 200, maxHeight: 200},
       response => {
         if (response.didCancel || response.error) {
-          showMessage({
-            message: 'Oops, anda tidak memilih foto apapun',
-            type: 'default',
-            backgroundColor: colors.error,
-            color: colors.white,
-          });
+          showError('Oops, anda tidak memilih foto apapun');
         } else {
           const source = {uri: response.assets[0].uri};
           setSaveToDB(
