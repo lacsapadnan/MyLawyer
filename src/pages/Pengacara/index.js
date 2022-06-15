@@ -12,8 +12,8 @@ import {Lawyer1} from '../../assets';
 
 export default function Pengacara({navigation}) {
   const [category, setCategory] = useState([]);
-
-  useEffect(() => {
+  const [lawyer, setLawyer] = useState([]);
+  const getCategory = () => {
     Fire.database()
       .ref('categories/')
       .once('value')
@@ -25,6 +25,35 @@ export default function Pengacara({navigation}) {
       .catch(err => {
         showError(err.message);
       });
+  };
+
+  const getLawyer = () => {
+    Fire.database()
+      .ref('lawyers/')
+      .limitToLast(3)
+      .once('value')
+      .then(res => {
+        if (res.val()) {
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map(key => {
+            data.push({
+              id: key,
+              data: oldData[key],
+            });
+          });
+          console.log('data parse: ', data);
+          setLawyer(data);
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  };
+
+  useEffect(() => {
+    getCategory();
+    getLawyer();
   }, []);
   return (
     <View style={styles.pages}>
@@ -49,42 +78,19 @@ export default function Pengacara({navigation}) {
             </View>
           </ScrollView>
         </View>
-        <Text style={styles.recommendLabel}>Rekomendasi Pengacara</Text>
-        <RecommendedLawyer
-          name="Nama Pengacara"
-          category="Hukum Pidana"
-          region="Jakarta"
-          avatar={Lawyer1}
-          onPress={() => navigation.navigate('LawyerProfile')}
-        />
-        <RecommendedLawyer
-          name="Nama Pengacara"
-          category="Hukum Pidana"
-          region="Jakarta"
-          avatar={Lawyer1}
-          onPress={() => navigation.navigate('LawyerProfile')}
-        />
-        <RecommendedLawyer
-          name="Nama Pengacara"
-          category="Hukum Pidana"
-          region="Jakarta"
-          avatar={Lawyer1}
-          onPress={() => navigation.navigate('LawyerProfile')}
-        />
-        <RecommendedLawyer
-          name="Nama Pengacara"
-          category="Hukum Pidana"
-          region="Jakarta"
-          avatar={Lawyer1}
-          onPress={() => navigation.navigate('LawyerProfile')}
-        />
-        <RecommendedLawyer
-          name="Nama Pengacara"
-          category="Hukum Pidana"
-          region="Jakarta"
-          avatar={Lawyer1}
-          onPress={() => navigation.navigate('LawyerProfile')}
-        />
+        <Text style={styles.recommendLabel}>Pengacara Terbaru</Text>
+        {lawyer.map(lawyer => {
+          return (
+            <RecommendedLawyer
+              key={lawyer.id}
+              name={lawyer.data.fullName}
+              category={lawyer.data.profession}
+              region={lawyer.data.office_address}
+              avatar={{uri: lawyer.data.photo}}
+              onPress={() => navigation.navigate('LawyerProfile')}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
