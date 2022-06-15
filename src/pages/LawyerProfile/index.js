@@ -1,21 +1,25 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Gap, Header, Profile} from '../../components';
 import ProfieItem from '../../components/molecules/ProfileItem';
 import {colors} from '../../utils';
 
-export default function LawyerProfile({navigation}) {
+export default function LawyerProfile({navigation, route}) {
+  const dataLawyer = route.params;
   return (
     <View style={styles.page}>
       <Header
         title="Profile Pengacara"
         onPress={() => navigation.navigate('Pengacara')}
       />
-      <Profile name="Nama Pengacara" desc="Hukum Pidana" />
+      <Profile
+        name={dataLawyer.data.fullName}
+        desc={dataLawyer.data.profession}
+        photo={{uri: dataLawyer.data.photo}}
+      />
       <Gap height={10} />
-      <ProfieItem label="Alumnus" value="UI 200" />
-      <ProfieItem label="Kantor" value="JL. Jend. Sudirman" />
-      <ProfieItem label="No Induk Advokat" value="1289371298371" />
+      <ProfieItem label="Kantor" value={dataLawyer.data.office_address} />
+      <ProfieItem label="No Induk Advokat" value={dataLawyer.data.nia} />
       <View style={styles.action}>
         <Button
           title="Mulai konsultasi"

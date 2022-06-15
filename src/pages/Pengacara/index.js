@@ -8,7 +8,6 @@ import {
 } from '../../components';
 import {colors, fonts, showError} from '../../utils';
 import {Fire} from '../../config';
-import {Lawyer1} from '../../assets';
 
 export default function Pengacara({navigation}) {
   const [category, setCategory] = useState([]);
@@ -87,7 +86,7 @@ export default function Pengacara({navigation}) {
               category={lawyer.data.profession}
               region={lawyer.data.office_address}
               avatar={{uri: lawyer.data.photo}}
-              onPress={() => navigation.navigate('LawyerProfile')}
+              onPress={() => navigation.navigate('LawyerProfile', lawyer)}
             />
           );
         })}
