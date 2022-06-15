@@ -1,16 +1,16 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
 
-export default function ListOffice({image, name, address}) {
+export default function ListOffice({image, name, address, onPress}) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={{uri: image}} style={styles.image} />
       <View>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.address}>{address}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -8,7 +8,6 @@ const Splash = ({navigation}) => {
     const unsubscribe = Fire.auth().onAuthStateChanged(user => {
       setTimeout(() => {
         if (user) {
-          console.log('user :', user);
           navigation.replace('MainApp');
         } else {
           navigation.navigate('GetStarted');
