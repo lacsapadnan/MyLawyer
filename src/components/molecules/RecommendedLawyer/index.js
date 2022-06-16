@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
   },
   region: {
     flexDirection: 'row',
+    maxWidth: 120,
   },
 });

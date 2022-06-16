@@ -25,7 +25,6 @@ export default function Pengacara({navigation}) {
         showError(err.message);
       });
   };
-
   const getLawyer = () => {
     Fire.database()
       .ref('lawyers/')
@@ -41,7 +40,6 @@ export default function Pengacara({navigation}) {
               data: oldData[key],
             });
           });
-          console.log('data parse: ', data);
           setLawyer(data);
         }
       })
@@ -69,7 +67,7 @@ export default function Pengacara({navigation}) {
                   <LawyerCategory
                     key={item.id}
                     category={item.category}
-                    onPress={() => navigation.navigate('ListLawyer')}
+                    onPress={() => navigation.navigate('ListLawyer', item)}
                   />
                 );
               })}
@@ -78,15 +76,15 @@ export default function Pengacara({navigation}) {
           </ScrollView>
         </View>
         <Text style={styles.recommendLabel}>Pengacara Terbaru</Text>
-        {lawyer.map(lawyer => {
+        {lawyer.map(dataLawyer => {
           return (
             <RecommendedLawyer
-              key={lawyer.id}
-              name={lawyer.data.fullName}
-              category={lawyer.data.profession}
-              region={lawyer.data.office_address}
-              avatar={{uri: lawyer.data.photo}}
-              onPress={() => navigation.navigate('LawyerProfile', lawyer)}
+              key={dataLawyer.id}
+              name={dataLawyer.data.fullName}
+              category={dataLawyer.data.profession}
+              region={dataLawyer.data.office_address}
+              avatar={{uri: dataLawyer.data.photo}}
+              onPress={() => navigation.navigate('LawyerProfile', dataLawyer)}
             />
           );
         })}

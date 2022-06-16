@@ -8,10 +8,7 @@ export default function LawyerProfile({navigation, route}) {
   const dataLawyer = route.params;
   return (
     <View style={styles.page}>
-      <Header
-        title="Profile Pengacara"
-        onPress={() => navigation.navigate('Pengacara')}
-      />
+      <Header title="Profile Pengacara" onPress={() => navigation.goBack()} />
       <Profile
         name={dataLawyer.data.fullName}
         desc={dataLawyer.data.profession}
