@@ -4,18 +4,18 @@ import {colors} from '../../../utils';
 import IconButton from './IconButton';
 import SendButton from './SendButton';
 
-const Button = ({type, title, onPress, icon, isActive}) => {
+const Button = ({type, title, onPress, icon, disable}) => {
   if (type === 'IconButton') {
     return <IconButton icon={icon} onPress={onPress} />;
   }
 
   if (type === 'SendButton') {
-    return <SendButton isActive={isActive} />;
+    return <SendButton disable={disable} onPress={onPress} />;
   }
 
-  if (isActive === false) {
+  if (disable) {
     return (
-      <View style={styles.isActive}>
+      <View style={styles.disable}>
         <Text style={styles.disableText}>{title}</Text>
       </View>
     );
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 8,
   }),
-  isActive: {
+  disable: {
     backgroundColor: colors.button.disable.background,
     paddingVertical: 10,
     borderRadius: 8,

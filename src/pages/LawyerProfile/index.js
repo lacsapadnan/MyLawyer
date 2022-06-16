@@ -20,7 +20,7 @@ export default function LawyerProfile({navigation, route}) {
       <View style={styles.action}>
         <Button
           title="Mulai konsultasi"
-          onPress={() => navigation.navigate('Chatting')}
+          onPress={() => navigation.navigate('Chatting', dataLawyer)}
         />
       </View>
     </View>

@@ -4,7 +4,7 @@ import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 import {Lawyer1} from '../../../assets';
 
-export default function ChatHeader({onPress, title, category}) {
+export default function ChatHeader({onPress, title, category, photo}) {
   return (
     <View style={styles.container}>
       <Button type="IconButton" icon="back-light" onPress={onPress} />
@@ -12,7 +12,7 @@ export default function ChatHeader({onPress, title, category}) {
         <Text style={styles.name}>{title}</Text>
         <Text style={styles.category}>{category}</Text>
       </View>
-      <Image style={styles.avatar} source={Lawyer1} />
+      <Image style={styles.avatar} source={photo} />
     </View>
   );
 }

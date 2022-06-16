@@ -1,24 +1,32 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {ChatBubble, ChatInput, Header} from '../../components';
 import {colors, fonts} from '../../utils';
 
-export default function Chatting({navigation}) {
+export default function Chatting({navigation, route}) {
+  const dataLawyer = route.params;
   return (
     <View style={styles.page}>
       <Header
         type="chat"
-        title="Hotman Paris Hutapea"
-        category="Hukum Pidana"
+        title={dataLawyer.data.fullName}
+        category={dataLawyer.data.profession}
+        photo={{uri: dataLawyer.data.photo}}
         onPress={() => navigation.goBack()}
       />
       <View style={styles.content}>
-        <Text style={styles.chatDate}>Rabu, 1 Juni 2022</Text>
-        <ChatBubble isMe />
-        <ChatBubble />
-        <ChatBubble isMe />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={styles.chatDate}>Rabu, 1 Juni 2022</Text>
+          <ChatBubble isMe />
+          <ChatBubble />
+          <ChatBubble isMe />
+        </ScrollView>
       </View>
-      <ChatInput />
+      <ChatInput
+        value="Hallo"
+        onChangeText={() => alert('input tap')}
+        onPress={() => alert('button pressed')}
+      />
     </View>
   );
 }
