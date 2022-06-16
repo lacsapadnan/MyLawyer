@@ -1,7 +1,14 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ChatBubble, ChatInput, Header} from '../../components';
-import {colors, fonts, getData, showError} from '../../utils';
+import {
+  colors,
+  fonts,
+  getChatTime,
+  getData,
+  setDateChat,
+  showError,
+} from '../../utils';
 import {Fire} from '../../config';
 
 export default function Chatting({navigation, route}) {
@@ -11,29 +18,24 @@ export default function Chatting({navigation, route}) {
 
   useEffect(() => {
     getData('user').then(res => {
-      console.log('user: ', res);
       setUser(res);
     });
   }, []);
 
   const chatSend = () => {
     const today = new Date();
-    const hour = today.getHours();
-    const minute = today.getMinutes();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const date = today.getDate();
     const data = {
       sendBy: user.uid,
-      chatDate: new Date().getTime(),
-      chatTime: `${hour}:${minute} ${hour > 12 ? 'PM' : 'AM'}`,
+      chatDate: today.getTime(),
+      chatTime: getChatTime(today),
       chatContent: chatContent,
     };
 
+    const chatID = `${user.uid}_${dataLawyer.data.uid}`;
+    const urlFirebase = `chatting/${chatID}/allChat/${setDateChat(today)}`;
+
     Fire.database()
-      .ref(
-        `chatting/${user.uid}_${dataLawyer.data.uid}/allChat/${year}-${month}-${date}`,
-      )
+      .ref(urlFirebase)
       .push(data)
       .then(() => {
         setChatContent('');
