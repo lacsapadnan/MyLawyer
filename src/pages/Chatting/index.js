@@ -1,10 +1,47 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ChatBubble, ChatInput, Header} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData, showError} from '../../utils';
+import {Fire} from '../../config';
 
 export default function Chatting({navigation, route}) {
   const dataLawyer = route.params;
+  const [chatContent, setChatContent] = useState('');
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getData('user').then(res => {
+      console.log('user: ', res);
+      setUser(res);
+    });
+  }, []);
+
+  const chatSend = () => {
+    const today = new Date();
+    const hour = today.getHours();
+    const minute = today.getMinutes();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+    const data = {
+      sendBy: user.uid,
+      chatDate: new Date().getTime(),
+      chatTime: `${hour}:${minute} ${hour > 12 ? 'PM' : 'AM'}`,
+      chatContent: chatContent,
+    };
+
+    Fire.database()
+      .ref(
+        `chatting/${user.uid}_${dataLawyer.data.uid}/allChat/${year}-${month}-${date}`,
+      )
+      .push(data)
+      .then(() => {
+        setChatContent('');
+      })
+      .catch(err => {
+        showError(err);
+      });
+  };
   return (
     <View style={styles.page}>
       <Header
@@ -23,9 +60,9 @@ export default function Chatting({navigation, route}) {
         </ScrollView>
       </View>
       <ChatInput
-        value="Hallo"
-        onChangeText={() => alert('input tap')}
-        onPress={() => alert('button pressed')}
+        value={chatContent}
+        onChangeText={value => setChatContent(value)}
+        onPress={chatSend}
       />
     </View>
   );
