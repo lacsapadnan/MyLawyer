@@ -18,7 +18,9 @@ export default function Pengacara({navigation}) {
       .once('value')
       .then(res => {
         if (res.val()) {
-          setCategory(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          setCategory(filterData);
         }
       })
       .catch(err => {
