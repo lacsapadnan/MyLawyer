@@ -1,21 +1,16 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
-import {Lawyer1} from '../../../assets';
 
-export default function Other() {
+export default function Other({text, date, photo}) {
   return (
     <View style={styles.container}>
-      <Image source={Lawyer1} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
       <View>
         <View style={styles.chatBubble}>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            hendrerit volutpat bibendum. Nulla tellus dolor, hendrerit
-            vestibulum libero quis, facilisis ultricies sapien.{' '}
-          </Text>
+          <Text style={styles.text}>{text}</Text>
         </View>
-        <Text style={styles.date}>04.15 PM</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
     </View>
   );
@@ -35,7 +30,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   chatBubble: {
-    maxWidth: '80%',
+    maxWidth: '90%',
     padding: 12,
     paddingLeft: 18,
     backgroundColor: colors.primary,

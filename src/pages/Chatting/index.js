@@ -15,12 +15,44 @@ export default function Chatting({navigation, route}) {
   const dataLawyer = route.params;
   const [chatContent, setChatContent] = useState('');
   const [user, setUser] = useState({});
+  const [chatData, setChatData] = useState([]);
 
-  useEffect(() => {
+  const getDataUser = () => {
     getData('user').then(res => {
       setUser(res);
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    getDataUser();
+    const chatID = `${user.uid}_${dataLawyer.data.uid}`;
+    const urlFirebase = `chatting/${chatID}/allChat/`;
+    Fire.database()
+      .ref(urlFirebase)
+      .on('value', snapshot => {
+        if (snapshot.val()) {
+          const dataSnapshot = snapshot.val();
+          const allChat = [];
+          Object.keys(dataSnapshot).map(key => {
+            const dataChat = dataSnapshot[key];
+            const newDataChat = [];
+
+            Object.keys(dataChat).map(itemChat => {
+              newDataChat.push({
+                id: itemChat,
+                data: dataChat[itemChat],
+              });
+            });
+
+            allChat.push({
+              id: key,
+              data: newDataChat,
+            });
+          });
+          setChatData(allChat);
+        }
+      });
+  }, [dataLawyer.data.uid, user.uid]);
 
   const chatSend = () => {
     const today = new Date();
@@ -33,12 +65,26 @@ export default function Chatting({navigation, route}) {
 
     const chatID = `${user.uid}_${dataLawyer.data.uid}`;
     const urlFirebase = `chatting/${chatID}/allChat/${setDateChat(today)}`;
+    const urlMessagesUser = `messages/${user.uid}/${chatID}`;
+    const urlMessagesLawyer = `messages/${dataLawyer.data.uid}/${chatID}`;
+    const dataHistoryChatUser = {
+      lastChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: dataLawyer.data.uid,
+    };
+    const dataHistoryChatLawyer = {
+      lastChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: user.uid,
+    };
 
     Fire.database()
       .ref(urlFirebase)
       .push(data)
       .then(() => {
         setChatContent('');
+        Fire.database().ref(urlMessagesUser).set(dataHistoryChatUser);
+        Fire.database().ref(urlMessagesLawyer).set(dataHistoryChatLawyer);
       })
       .catch(err => {
         showError(err);
@@ -55,10 +101,25 @@ export default function Chatting({navigation, route}) {
       />
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={styles.chatDate}>Rabu, 1 Juni 2022</Text>
-          <ChatBubble isMe />
-          <ChatBubble />
-          <ChatBubble isMe />
+          {chatData.map(chat => {
+            return (
+              <View key={chat.id}>
+                <Text style={styles.chatDate}>{chat.id}</Text>
+                {chat.data.map(itemChat => {
+                  const isMe = itemChat.data.sendBy === user.uid;
+                  return (
+                    <ChatBubble
+                      key={itemChat.id}
+                      isMe={isMe}
+                      text={itemChat.data.chatContent}
+                      date={itemChat.data.chatTime}
+                      photo={isMe ? null : {uri: dataLawyer.data.photo}}
+                    />
+                  );
+                })}
+              </View>
+            );
+          })}
         </ScrollView>
       </View>
       <ChatInput
