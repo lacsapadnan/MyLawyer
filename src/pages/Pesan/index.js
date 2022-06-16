@@ -1,41 +1,64 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {List} from '../../components';
-import {colors, fonts} from '../../utils';
-import {Lawyer1, Lawyer2, Lawyer3} from '../../assets';
+import {colors, fonts, getData} from '../../utils';
+import {Fire} from '../../config';
 
 export default function Pesan({navigation}) {
-  const [lawyers] = useState([
-    {
-      id: 1,
-      profile: Lawyer1,
-      name: 'Alexander Jannie',
-      desc: 'Baik ibu, terima kasih banyak atas wakt...',
-    },
-    {
-      id: 2,
-      profile: Lawyer2,
-      name: 'Nairobi Putri Hayza',
-      desc: 'Oh tentu saja tidak karena jeruk it...',
-    },
-    {
-      id: 3,
-      profile: Lawyer3,
-      name: 'John McParker Steve',
-      desc: 'Oke menurut pak dokter bagaimana unt...',
-    },
-  ]);
+  const [user, setUser] = useState({});
+  const [history, setHistory] = useState([]);
+
+  const getDataUser = () => {
+    getData('user').then(res => {
+      setUser(res);
+    });
+  };
+
+  useEffect(() => {
+    getDataUser();
+    const rootDB = Fire.database().ref();
+    const urlHistory = `messages/${user.uid}/`;
+    const messagesDB = rootDB.child(urlHistory);
+
+    messagesDB.on('value', async snapshot => {
+      if (snapshot.val()) {
+        const oldData = snapshot.val();
+        const data = [];
+
+        const promises = await Object.keys(oldData).map(async key => {
+          const urlLawyerUid = `lawyers/${oldData[key].uidPartner}`;
+          const detailLawyer = await rootDB.child(urlLawyerUid).once('value');
+          console.log('lawyer: ', detailLawyer.val());
+          data.push({
+            id: key,
+            detailLawyer: detailLawyer.val(),
+            ...oldData[key],
+          });
+        });
+
+        await Promise.all(promises);
+
+        console.log('data history: ', data);
+        setHistory(data);
+      }
+    });
+  }, [user.uid]);
+
   return (
     <View style={styles.page}>
       <Text style={styles.title}>Pesan</Text>
-      {lawyers.map(lawyer => {
+      {history.map(chat => {
+        const dataLawyer = {
+          id: chat.detailLawyer.uid,
+          data: chat.detailLawyer,
+        };
         return (
           <List
-            key={lawyer.id}
-            profile={lawyer.profile}
-            name={lawyer.name}
-            desc={lawyer.desc}
-            onPress={() => navigation.navigate('Chatting')}
+            key={chat.id}
+            profile={{uri: chat.detailLawyer.photo}}
+            name={chat.detailLawyer.fullName}
+            desc={chat.lastChat}
+            onPress={() => navigation.navigate('Chatting', dataLawyer)}
           />
         );
       })}
