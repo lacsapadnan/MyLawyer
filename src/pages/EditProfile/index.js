@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import {Button, Gap, Header, Input, Profile} from '../../components';
 import {colors, getData, showError, showSuccess, storeData} from '../../utils';
 import {Fire} from '../../config';
-import {showMessage} from 'react-native-flash-message';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {UserPhotoNull} from '../../assets';
 

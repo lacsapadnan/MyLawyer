@@ -83,7 +83,7 @@ export default function Pengacara({navigation}) {
             <RecommendedLawyer
               key={dataLawyer.id}
               name={dataLawyer.data.fullName}
-              category={dataLawyer.data.profession}
+              category={dataLawyer.data.category}
               region={dataLawyer.data.office_address}
               avatar={{uri: dataLawyer.data.photo}}
               onPress={() => navigation.navigate('LawyerProfile', dataLawyer)}

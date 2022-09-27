@@ -1,7 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Header, List} from '../../components';
-import {Lawyer1} from '../../assets';
 import {colors} from '../../utils';
 import {Fire} from '../../config';
 

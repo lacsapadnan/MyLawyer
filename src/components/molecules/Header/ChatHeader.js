@@ -2,7 +2,6 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
-import {Lawyer1} from '../../../assets';
 
 export default function ChatHeader({onPress, title, category, photo}) {
   return (

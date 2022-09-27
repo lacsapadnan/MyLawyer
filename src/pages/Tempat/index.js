@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View, ImageBackground, Linking} from 'react-native';
+import {StyleSheet, Text, View, ImageBackground} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {PlaceBg} from '../../assets';
 import {colors, fonts, showError} from '../../utils';
 import {ListOffice} from '../../components';
 import {Fire} from '../../config';
-import openMap from 'react-native-open-maps';
+import {createOpenLink} from 'react-native-open-maps';
 
 export default function Tempat() {
   const [office, setOffice] = useState([]);
@@ -36,9 +36,9 @@ export default function Tempat() {
               name={item.name}
               address={item.address}
               image={item.image}
-              onPress={openMap({
-                latitude: item.lat,
-                longitude: item.long,
+              onPress={createOpenLink({
+                query: item.name,
+                zoom: 0,
               })}
             />
           );

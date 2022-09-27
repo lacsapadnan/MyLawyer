@@ -53,8 +53,6 @@ export default function Login({navigation}) {
             secureTextEntry={true}
           />
           <Gap height={10} />
-          <Link text="Forgot password?" size={12} />
-          <Gap height={40} />
           <Button title="Sign in" onPress={login} />
           <Gap height={32} />
           <Link

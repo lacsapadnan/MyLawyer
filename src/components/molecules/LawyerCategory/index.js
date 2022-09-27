@@ -1,21 +1,21 @@
-import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {ILCategory} from '../../../assets';
+import {CategoryIcon, TaxIcon, TPPUIcon} from '../../../assets';
 import {colors} from '../../../utils/colors';
 import {fonts} from '../../../utils';
 
 export default function LawyerCategory({category, onPress}) {
   const Icon = () => {
     if (category === 'Hukum Perpajakan') {
-      return <Image source={ILCategory} style={styles.image} />;
+      return <TaxIcon style={styles.image} />;
     }
-    if (category === 'Hukum Perdata') {
-      return <Image source={ILCategory} style={styles.image} />;
+    if (category === 'Hukum TPPU') {
+      return <TPPUIcon style={styles.image} />;
     }
     if (category === 'Hukum Kepailitan') {
-      return <Image source={ILCategory} style={styles.image} />;
+      return <TPPUIcon style={styles.image} />;
     }
-    return <Image source={ILCategory} style={styles.image} />;
+    return <CategoryIcon style={styles.image} />;
   };
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

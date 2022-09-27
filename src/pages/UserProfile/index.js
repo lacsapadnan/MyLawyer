@@ -46,7 +46,7 @@ export default function UserProfile({navigation}) {
       <Gap height={14} />
       <List
         name="Edit Profile"
-        desc="Last update yesterday"
+        desc="Ubah informasi profile anda"
         type="next"
         icon="edit-profile"
         onPress={() => navigation.navigate('EditProfile')}

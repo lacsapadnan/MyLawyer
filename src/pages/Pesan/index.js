@@ -28,7 +28,6 @@ export default function Pesan({navigation}) {
         const promises = await Object.keys(oldData).map(async key => {
           const urlLawyerUid = `lawyers/${oldData[key].uidPartner}`;
           const detailLawyer = await rootDB.child(urlLawyerUid).once('value');
-          console.log('lawyer: ', detailLawyer.val());
           data.push({
             id: key,
             detailLawyer: detailLawyer.val(),

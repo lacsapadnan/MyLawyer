@@ -14,6 +14,9 @@ import ChevronRight from './chevron-right.svg';
 import SendActive from './send-active.svg';
 import SendDisable from './send-disable.svg';
 import IconUser from './ic-user.svg';
+import TaxIcon from './tax-icon.svg';
+import TPPUIcon from './tppu-icon.svg';
+import CategoryIcon from './category-icon.svg';
 
 export {
   Logo,
@@ -32,4 +35,7 @@ export {
   SendActive,
   SendDisable,
   IconUser,
+  TaxIcon,
+  TPPUIcon,
+  CategoryIcon,
 };
